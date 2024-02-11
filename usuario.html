@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Usuario</title>
+    <link rel="stylesheet" href="electiva4.css">
+
+
+
+    <style>
+        body {
+            background-color: #397de4;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            background-color: #1E90FF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+
+
+
+    <script>
+        function registrar() {
+            var nombre = document.getElementById('nombre').value;
+            var apellido = document.getElementById('apellido').value;
+            var cedula = document.getElementById('cedula').value;
+
+            // Aquí debería enviar los datos al servidor
+            // Por ahora, solo mostrar una alerta
+
+            alert('Registro exitoso: ' + nombre + ' ' + apellido + ', ' + cedula);
+        }
+    </script>
+
+
+
+</head>
+
+<body>
+    
+
+    <div class="cuerpo">   
+        <h1 class="titulo">Registro de Usuario</h1>
+
+        
+        <form class="formulario">
+
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre"><br>
+            
+            <label for="apellido">Apellido:</label><br>
+            <input type="text" id="apellido" name="apellido"><br>
+            
+            <label for="cedula">Cedula:</label><br>
+            <input type="number" id="cedula" name="cedula"><br>
+            
+            <h1>registro de notas</h1>
+            
+            <label for="matematica">matematica:</label><br>
+            <input type="number" id="cedula" name="cedula"><br>
+            
+            <label for="ingles">ingles:</label><br>
+            <input type="number" id="ingles" name="cedula"><br>
+            
+            <label for="quimica">quimica:</label><br>
+            <input type="number" id="quimica" name="cedula"><br>
+            
+        
+            <button onclick="registrar()" class="registrar">Registrar</button>
+        </form>
+    </div>
+
+
+</body>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
