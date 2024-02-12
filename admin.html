@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>admin</title>
+
+        <!--inclusion de archivos .css y .js-->
+        <link rel="stylesheet" href="electiva4.css">
+        <link rel="stylesheet" href="electiva4.js">
+
+       <!--esta es la pagina del administrador-->
+        <style>
+
+            /*stilos para el cuerpo de la pagina*/
+            body {
+                background-color: #397de4;
+                color: white;
+                font-family: Arial, sans-serif;
+                position: relative;
+                text-align: center;
+
+            }
+
+            /*Estlos para el boton de iniciar secion*/
+            button {
+                background-color: #1E90FF;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+
+            /*estilos para la tabla*/
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            /* Estilos para las celdas de la tabla */
+            th, td {
+                padding: 8px;
+            }
+
+        </style>
+    
+    
+    </head>
+
+
+     <!-- Título de bienvenida -->
+    <body>
+        <div class="titulo-admin">
+            <h2>Bienvenido administrador</h2>
+        </div>
+        
+        <div class="contenedor">
+            <!--aqui formualrio de administrador para ingresar los datos a la tabla que esta al lado-->
+            <div class="formulario" id="formulario">
+                <h3>formulario</h3>
+                <!-- Campos del formulario, entradas de datos -->
+                <form action="#" class="Formulario">
+                    <label for="nombre">Nombre:</label><br>
+                    <input type="text" id="nombre" name="nombre" required><br>
+                    <label for="apellido">Apellido:</label><br>
+                    <input type="text" id="apellido" name="apellido" required><br>
+                    <label for="cedula">Cedula:</label><br>
+                    <input type="number" id="cedula" name="cedula" required><br>
+                    <label for="matematica">Matematica:</label><br>
+                    <input type="number" id="matematica" name="matematica" required><br>
+                    <label for="ingles">Ingles:</label><br>
+                    <input type="number" id="ingles" name="ingles" required><br>
+                    <label for="quimica">Quimica:</label><br>
+                    <input type="number" id="quimica" name="quimica" required><br>
+                      <!-- Botón para enviar el formulario -->
+                    <button type="submit">Registrar</button>
+
+                </form>
+                    
+            </div>
+
+            <!--tabla donde se reflejan los datos ingresados desde el formulario del administrador-->
+            <div class="tablaDEestudiantes">    
+                <table id="tablaEstudiantes">
+                    <!-- Encabezados de la tabla -->
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cedula</th>
+                        <th>Matematica</th>
+                        <th>Ingles</th>
+                        <th>Quimica</th>
+                        <th>Acciones</th>
+                    </tr>
+                </table>
+            </div>
+
+            <script>
+                // Código JavaScript para agregar los datos del formulario del administrador a la tabla//
+                let listaEstudiantes = [];
+                //Lista para almacenar los estudiantes
+
+                const formulario = document.querySelector('#formulario');// Referencia al formulario
+                formulario.addEventListener('submit', function(e) { // Evento al enviar el formulario
+                    e.preventDefault(); // Prevenir la recarga de la página
+        
+                      // Obtener los valores de los campos del formulario
+                    let nombre = document.getElementById('nombre').value;
+                    let apellido = document.getElementById('apellido').value;
+                    let cedula = document.getElementById('cedula').value;
+                    let matematica = document.getElementById('matematica').value;
+                    let ingles = document.getElementById('ingles').value;
+                    let quimica = document.getElementById('quimica').value;
+        
+                     // Crear un objeto estudiante con los datos del formulario
+                    let estudiante = {
+                        nombre: nombre,
+                        apellido: apellido,
+                        cedula: cedula,
+                        matematica: matematica,
+                        ingles: ingles,
+                        quimica: quimica
+                    };
+        
+                    // Agregar el estudiante a la lista
+                    listaEstudiantes.push(estudiante);
+                     // Actualizar la tabla
+                    actualizarTabla();
+                });
+
+                // Obtener la tabla
+                function actualizarTabla() {
+                    let tabla = document.getElementById('tablaEstudiantes'); // Limpiar la tabla
+                    tabla.innerHTML = `
+                        
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Cedula</th>
+                            <th>Matematica</th>
+                            <th>Ingles</th>
+                            <th>Quimica</th>
+                            <th>Acciones</th>
+                        </tr>
+                    `;
+        
+                    // Para cada estudiante en la lista
+                    listaEstudiantes.forEach((estudiante, index) => { // Crear una fila
+                        let fila = document.createElement('tr');// Llenar la fila con los datos del estudiante y los botones de acciones
+                        fila.innerHTML = `
+                            <td>${estudiante.nombre}</td>
+                            <td>${estudiante.apellido}</td>
+                            <td>${estudiante.cedula}</td>
+                            <td>${estudiante.matematica}</td>
+                            <td>${estudiante.ingles}</td>
+                            <td>${estudiante.quimica}</td>
+                            <td>
+                                <button onclick="editar(${index})" class="editar">Editar</button>
+                                <button onclick="eliminar(${index})" class="eliminar">Eliminar</button>
+                            </td>
+                        `;
+                         // Agregar la fila a la tabla
+                        tabla.appendChild(fila);
+                    });
+                }
+                // Obtener el estudiante a editar
+                function editar(index) {
+                    let estudiante = listaEstudiantes[index];
+                    // Llenar el formulario con los datos del estudiante
+                    document.getElementById('nombre').value = estudiante.nombre;
+                    document.getElementById('apellido').value = estudiante.apellido;
+                    document.getElementById('cedula').value = estudiante.cedula;
+                    document.getElementById('matematica').value = estudiante.matematica;
+                    document.getElementById('ingles').value = estudiante.ingles;
+                    document.getElementById('quimica').value = estudiante.quimica;
+                }
+                // Eliminar el estudiante de la lista
+                function eliminar(index) {
+                    listaEstudiantes.splice(index, 1);
+                    // Actualizar la tabla
+                    actualizarTabla();
+                }
+            </script>
+
+
+        </div>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
