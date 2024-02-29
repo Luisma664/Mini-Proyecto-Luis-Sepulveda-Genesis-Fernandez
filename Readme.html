@@ -1,10 +1,33 @@
-El proyecto consiste en la implementación de un sistema de gestión de usuarios a través de un formulario en un sitio web. El sitio web consta de tres páginas principales: una página de inicio de sesión con roles de "admin" y "usuario", donde las credenciales para el administrador son "admin123" 
-y para el usuario son "usuario123". Una vez autenticado, el usuario puede acceder al formulario para registrar sus datos, incluyendo nombre, apellido,
-cédula y calificaciones en materias específicas como matemáticas, inglés y química.
+Este repositorio contiene un sistema de registro de usuarios mediante inicio de sesión
+utilizando Firebase Firestore como base de datos. A continuación, describiré cómo funciona y qué características ofrece:
 
-Por otro lado, el administrador tiene acceso privilegiado para visualizar la lista de usuarios registrados, editar sus datos, agregar nuevos usuarios
-o eliminar registros existentes. Además, el administrador puede realizar operaciones de lectura, escritura, actualización y eliminación (CRUD) sobre 
-la base de datos de usuarios.
+Inicio de Sesión:
 
-Este proyecto busca facilitar la gestión eficiente de usuarios a través de un sistema web intuitivo y seguro, brindando a los 
-administradores la capacidad de administrar y supervisar la información de los usuarios de manera efectiva.
+Los usuarios pueden iniciar sesión con las siguientes credenciales:
+Usuario: usuario / contraseña: usuario123
+Administrador: admin / contraseña: admin123
+El acceso está restringido según el rol del usuario.
+
+Panel de Administrador:
+
+Si inicias sesión como administrador, tendrás acceso a:
+Un formulario para registrar nuevos usuarios.
+Una tabla para mostrar los datos de los usuarios registrados.
+Operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre los usuarios.
+
+Registro de Usuarios:
+
+Si inicias sesión como usuario, podrás:
+Completar un formulario para registrar tus datos personales.
+Al finalizar el registro, recibirás un mensaje de éxito.
+
+Validación de Datos:
+
+El sistema valida los datos ingresados en el inicio de sesión y el registro.
+Si los datos no son correctos, no se permitirá el acceso a ninguna de las dos páginas.
+
+Configuración
+
+Firebase Firestore:
+La base de datos se encuentra en Firestore.
+Para editar la base de datos, debes hacerlo directamente desde Firestore, ya que el CRUD es local.
